@@ -1,0 +1,35 @@
+// Project - Fading light  
+int ledPin = 10;  
+  
+void setup() {  
+      pinMode(ledPin, OUTPUT); 
+// Set the LED pin as an OUTPUT  
+}  
+  
+void loop(){  
+      fadeOn(1000, 5); 
+// Fade the LED in over 1000 milliseconds, incrementing by 5  
+      fadeOff(1000, 5); 
+// Fade the LED out over 1000 milliseconds, decrementing by 5  
+}  
+  
+void fadeOn(unsigned int time, int increment) {  
+  for (byte value = 0; value < 255; value += increment) { 
+// Loop from 0 to 255, incrementing by 'increment'  
+analogWrite(ledPin, value); 
+// Set the brightness of the LED to the current value  
+delay(time / (255 / increment)); 
+// Delay for a fraction of the total time based on the increment  
+        }   
+}  
+  
+void fadeOff(unsigned int time, int decrement) {  
+  for (byte value = 255; value > 0; value -= decrement) { 
+// Loop from 255 to 0, decrementing by 'decrement'  
+analogWrite(ledPin, value); 
+// Set the brightness of the LED to the current value  
+delay(time / (255 / decrement)); 
+// Delay for a fraction of the total time based on the decrement  
+  }  
+}
+
