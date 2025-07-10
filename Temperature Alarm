@@ -1,0 +1,46 @@
+// Project – Temperature Alarm  
+float sinVal;            // Variable to store sine function value  
+int toneVal;             // Variable to store tone frequency  
+unsigned long tepTimer;  // Timer for periodic temperature output  
+  
+void setup(){   
+    pinMode(8, OUTPUT);  // Set pin 8 as OUTPUT for buzzer  
+    Serial.begin(9600);  // Start serial communication at 9600 bps  
+}  
+  
+void loop(){   
+    int val;          // Variable to store the value read from LM35  
+double data;  
+// Variable to store the converted temperature value  
+val = analogRead(0);   
+// Read the value from analog pin 0 connected to LM35  
+data = (double) val * (5.0/10.24);  
+// Convert voltage to temperature  
+       
+if(data > 27){        
+// If the temperature is greater than 27, sound the buzzer  
+          for(int x = 0; x < 180; x++){  
+            // Convert angle for sine function to radians  
+            sinVal = (sin(x * (3.1412/180)));  
+            // Generate tone frequency using sine function value  
+            toneVal = 2000 + (int(sinVal * 1000));  
+            // Play tone on pin 8  
+            tone(8, toneVal);  
+            delay(2);   
+     }     
+} else {    
+// If the temperature is less than 27, stop the buzzer  
+           noTone(8);          // Stop the buzzer  
+    }  
+       
+if(millis() - tepTimer > 500){     
+// Every 500ms, print temperature to serial port  
+             tepTimer = millis();  
+             Serial.print("temperature: ");     
+// Print "temperature" to serial port  
+             Serial.print(data);               
+// Print temperature value to serial port  
+             Serial.println("C");              
+// Print temperature unit to serial port  
+       }   
+}
