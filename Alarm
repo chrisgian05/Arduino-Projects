@@ -1,0 +1,19 @@
+// Project - Alarm  
+float sinVal;  
+int toneVal;  
+  
+void setup(){  
+    pinMode(8, OUTPUT); // Set pin 8 as an output pin  
+}  
+  
+void loop(){  
+    for(int x=0; x<180; x++){  
+        // Convert sin function angle to radians  
+        sinVal = (sin(x*(3.1412/180)));  
+        // Calculate tone frequency based on sin value  
+        toneVal = 2000+(int(sinVal*1000));  
+        // Generate sound frequency using the sin function value  
+        tone(8, toneVal); // Output toneVal to pin 8  
+        delay(2); // Pause for 2 milliseconds  
+    }  
+}
