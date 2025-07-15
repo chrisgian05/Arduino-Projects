@@ -1,0 +1,25 @@
+// Project - Auto Light  
+int LED = 13;                    // Define LED pin as digital pin 13  
+int val = 0;                      
+// Define variable to store analog reading from pin 0 (light sensor)  
+  
+void setup(){  
+     pinMode(LED, OUTPUT);        // Set the LED pin as OUTPUT mode  
+     Serial.begin(9600);          
+// Initialize serial communication with a baud rate of 9600  
+}  
+  
+void loop(){  
+     val = analogRead(0);         
+// Read analog value from pin 0 (ranging from 0 to 1023)  
+     Serial.println(val);         
+// Print the analog value to the serial monitor  
+     if(val < 1000){              
+// If the analog value is less than 1000,  
+          digitalWrite(LED, LOW); // turn the LED OFF  
+     }else{                       // Otherwise,  
+          digitalWrite(LED, HIGH);// turn the LED ON  
+     }  
+     delay(10);                   
+// Wait for 10 milliseconds before the next loop iteration  
+}  
