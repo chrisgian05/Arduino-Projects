@@ -1,0 +1,31 @@
+// Project - Detecting Vibration  
+int SensorLED = 13;       // Define the LED pin as digital pin 13  
+int SensorINPUT = 3;      
+/* Connect the vibration switch to interrupt 1, which is digital pin 3*/ 
+unsigned char state = 0;  
+  
+void setup() {   
+  pinMode(SensorLED, OUTPUT);         
+// Set the LED pin as OUTPUT mode  
+  pinMode(SensorINPUT, INPUT);        
+// Set the vibration switch pin as INPUT mode  
+  
+  /*Trigger interrupt 1 (pin 3) on the RISING edge, calling the blink function */ 
+  attachInterrupt(1, blink, RISING);     
+ }  
+  
+void loop(){  
+      if(state != 0){              // If the state is not 0  
+        state = 0;               // Set state to 0  
+        digitalWrite(SensorLED, HIGH);   // Turn on the LED  
+        delay(500);          // Delay for 500 milliseconds  
+      }    
+      else   
+        digitalWrite(SensorLED, LOW);
+// Otherwise, turn off the LED  
+}   
+  
+void blink(){                // Interrupt function blink()  
+state++;             
+// Increment the state value every time the interrupt is triggered  
+}
