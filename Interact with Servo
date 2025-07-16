@@ -1,0 +1,22 @@
+// Project - Interact with Servo  
+#include <Servo.h>     // Include the Servo library  
+  
+Servo myservo;        // Create a servo object  
+  
+int potpin = 0;        // Analog pin connected to the potentiometer  
+int val;              // Variable to store the analog read value  
+  
+void setup() {  
+  myservo.attach(9);         // Attach the servo to digital pin 9  
+}  
+  
+void loop() {  
+  val = analogRead(potpin);  
+// Read the value from the potentiometer  
+  val = map(val, 0, 1023, 0, 179); 
+// Scale the value from 0-1023 to 0-179 degrees  
+  myservo.write(val);        
+// Set the servo position according to the scaled value  
+  delay(15);                 
+// Wait for 15ms for the servo to reach the position  
+}
