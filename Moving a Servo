@@ -1,0 +1,27 @@
+// Project - Moving a Servo  
+#include <Servo.h>      // Declare the Servo.h library  
+Servo myservo;          // Create a servo object  
+int pos = 0;            // Variable pos to store the servo position  
+   
+void setup() {   
+myservo.attach(9);  
+// Attach the servo on pin 9 to the servo object  
+}   
+   
+void loop() {   
+for(pos = 0; pos < 180; pos += 1){   
+// Rotate the servo from 0° to 180°, increasing by 1° each time  
+        myservo.write(pos);              
+// Write the angle to the servo  
+        delay(15);                       
+// Delay for 15ms to allow the servo to reach the position  
+    }  
+      
+for(pos = 180; pos >= 1; pos -= 1) {  
+/* Rotate the servo back from 180° to 0°, decreasing by 1° each time */
+        myservo.write(pos);              
+// Write the angle to the servo  
+        delay(15);                       
+// Delay for 15ms to allow the servo to reach the position  
+    }   
+}
