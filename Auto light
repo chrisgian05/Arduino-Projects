@@ -14,8 +14,8 @@ void loop(){
 // Read analog value from pin 0 (ranging from 0 to 1023)  
      Serial.println(val);         
 // Print the analog value to the serial monitor  
-     if(val < 1000){              
-// If the analog value is less than 1000,  
+     if(val < 1023){              
+// If the analog value is less than 1023,  
           digitalWrite(LED, LOW); // turn the LED OFF  
      }else{                       // Otherwise,  
           digitalWrite(LED, HIGH);// turn the LED ON  
